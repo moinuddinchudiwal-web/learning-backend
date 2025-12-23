@@ -1,7 +1,7 @@
+import bcrypt from "bcryptjs";
 import { Document, Schema, model } from "mongoose";
 
 type UserRole = "user" | "admin";
-
 export interface IUser extends Document {
   firstName: string;
   lastName: string;
@@ -10,6 +10,8 @@ export interface IUser extends Document {
   role: UserRole;
   isActive: boolean;
   refreshToken: string;
+  resetPasswordToken?: string;
+  resetPasswordExpires?: Date;
 }
 
 const UserSchema = new Schema<IUser>(
@@ -50,8 +52,16 @@ const UserSchema = new Schema<IUser>(
       type: String,
       select: false,
     },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
   },
   { timestamps: true, strict: "throw" }
 );
+
+UserSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+
+  this.password = await bcrypt.hash(this.password, 10);
+});
 
 export default model<IUser>("User", UserSchema);

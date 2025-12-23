@@ -1,9 +1,11 @@
 import { Router } from "express";
 import {
   changePassword,
+  forgotPassword,
   getMe,
   logout,
   refreshToken,
+  resetPassword,
   signin,
   signup,
   updateProfile,
@@ -13,6 +15,8 @@ import { validate } from "../middlewares/validate.middleware";
 import { catchAsync } from "../utils/catchAsync";
 import {
   changePasswordSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
   signinSchema,
   signupSchema,
   updateProfileSchema,
@@ -37,5 +41,11 @@ router.patch(
 );
 router.post("/logout", protect, catchAsync(logout));
 router.post("/refresh-token", catchAsync(refreshToken));
+router.post(
+  "/forgot-password",
+  validate(forgotPasswordSchema),
+  catchAsync(forgotPassword)
+);
+router.post("/reset-password", validate(resetPasswordSchema), catchAsync(resetPassword));
 
 export default router;
