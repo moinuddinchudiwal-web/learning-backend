@@ -1,0 +1,55 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  
+    // Organize + sort imports on save
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
+    },
+  
+    // Prettier settings
+    "prettier.printWidth": 90,
+    "prettier.singleQuote": false,
+    "prettier.trailingComma": "es5",
+    "prettier.semi": true,
+    "prettier.tabWidth": 2,
+  
+    // Tailwind CSS support
+    "tailwindCSS.experimental.classRegex": [
+      ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+      ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ],
+  
+    "tailwindCSS.emmetCompletions": true,
+    "tailwindCSS.includeLanguages": {
+      "typescript": "html",
+      "typescriptreact": "html"
+    },
+  
+    // React + TSX
+    "files.associations": {
+      "*.tsx": "typescriptreact"
+    },
+  
+    // Disable built-in formatter for JS/TS
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+  
+    // Allow modern JSX transform
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+  
+    // Formatting for shadcn components
+    "editor.stickyScroll.enabled": true,
+    "editor.smoothScrolling": true
+  }
+  
